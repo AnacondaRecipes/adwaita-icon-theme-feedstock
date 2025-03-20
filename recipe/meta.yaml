@@ -11,6 +11,8 @@ source:
   sha256: ad088a22958cb8469e41d9f1bba0efb27e586a2102213cd89cc26db2e002bdfe
 
 build:
+  # gtk3 not available on windows or s390x
+  skip: true  # [win or s390x]
   number: 0
   noarch: generic
   string: "unix_{{ PKG_BUILDNUM }}"  # [unix]
