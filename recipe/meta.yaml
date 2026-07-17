@@ -1,26 +1,24 @@
 {% set name = "adwaita-icon-theme" %}
-{% set version = "48.0" %}
-{% set major_version = version.split('.')[0] %}
+{% set version = "50.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://download.gnome.org/sources/{{ name }}/{{ major_version }}/{{ name }}-{{ version }}.tar.xz
-  sha256: 847068888650d9673115be6dbf2bfdc31a46aebc528a6a9db4420e60e656b8d4
+  url: https://download.gnome.org/sources/{{ name }}/{{ version.split('.')[0] }}/{{ name }}-{{ version }}.tar.xz
+  sha256: fac6e0401fca714780561a081b8f7e27c3bc1db34ebda4da175081f26b24d460
 
 build:
-  # gtk3 not available on windows or s390x
-  skip: true  # [win or s390x]
   number: 0
+  skip: true  # [win]
 
 requirements:
   build:
     # gtk needed for building icon cache, build OK because cache file is platform-independent
     - gtk3
     - meson
-    - ninja
+    - ninja-base
     - python
   host:
     # explicitly empty
